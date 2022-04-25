@@ -38,6 +38,5 @@ return [
             '1668x2388' => 'assets/images/pwa/splash-1668x2388.png',
             '2048x2732' => 'assets/images/pwa/splash-2048x2732.png',
         ],
-        //'serviceworker.js' => './assets/js/serviceworker.js',
     ]
 ];
