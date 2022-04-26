@@ -3,6 +3,7 @@
 return [
     'clicktonext.pwa' => [
         'enable' => true,
+        
         'manifest' => [
             'name' => 'Kirby PWA',
             'short_name' => 'PWA',
@@ -11,16 +12,19 @@ return [
             'theme_color' => '#1649CC',
             'start_url' => './',
             'scope' => '/',
-            'display' => 'fullscreen',
+            'display' => 'standalone', // fullscreen, standalone (with status bar)
             'orientation' => 'any',
-            'status_bar' => 'white',
+            // iOS only
+            'status_bar' => 'black-translucent', // black, white, black-translucent
         ],
+
         'icons' => [
             '192x192' => 'assets/images/pwa/icon-192x192.png',
             '256x256' => 'assets/images/pwa/icon-384x384.png',
             '384x384' => 'assets/images/pwa/icon-384x384.png',
             '512x512' => 'assets/images/pwa/icon-512x512.png',
         ],
+
         // Splash screen only works in iOS
         // Android uses:
         // - 512x512 icon
