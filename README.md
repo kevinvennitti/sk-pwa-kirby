@@ -111,3 +111,5 @@ This starterkit is ready to use Material Symbols as font variants:
 
 - [ ] Move `status_bar` outside manifest (it's not in the manifest but in meta tags only)
 - [ ] Check is `dir` is still necessary
+- [ ] Specify `icons` + `splash` + `screenshots` + `shortcuts` arrays
+- [ ] A word on A2HS
