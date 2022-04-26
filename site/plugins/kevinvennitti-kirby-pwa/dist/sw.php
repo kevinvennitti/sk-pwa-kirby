@@ -1,43 +1,36 @@
-const DIR = ''; // If dir, starts with "/"
+<?php
+// Files to cache
+$cached_files = option('kevinvennitti.pwa.cached_files') ?? [];
+
+// Lazy-cache
+$lazy_cache = option('kevinvennitti.pwa.lazy_cache') ?? [];
+
+$offline_url = option('kevinvennitti.pwa.offline_url') ?? '/';
+$dir = option('kevinvennitti.pwa.dir') ?? '';
+
+header('Content-Type: application/javascript');
+?>
+const DIR = '<?= $dir; ?>'; // If dir, starts with "/"
 
 const BASE = location.protocol + "//" + location.host + DIR;
-const PREFIX = "V1";
+const PREFIX = "V2";
 
-const OFFLINE_URL = `${BASE}/offline`;
+const OFFLINE_URL = '<?= $offline_url; ?>';
 
 // For static files
 const CACHED_FILES = [
-  `${BASE}/manifest.json`,
-
-  `${BASE}/assets/js/jquery.js`,
-  `${BASE}/assets/js/main.js`,
-  `${BASE}/assets/css/normalize.css`,
-  `${BASE}/assets/css/main.css`,
-
-  `${BASE}/assets/images/pwa/icon-192x192.png`,
-  `${BASE}/assets/images/pwa/icon-256x256.png`,
-  `${BASE}/assets/images/pwa/icon-384x384.png`,
-  `${BASE}/assets/images/pwa/icon-512x512.png`,
-  `${BASE}/assets/images/pwa/splash-640x1136.png`,
-  `${BASE}/assets/images/pwa/splash-750x1334.png`,
-  `${BASE}/assets/images/pwa/splash-828x1792.png`,
-  `${BASE}/assets/images/pwa/splash-1125x2436.png`,
-  `${BASE}/assets/images/pwa/splash-1242x2208.png`,
-  `${BASE}/assets/images/pwa/splash-1242x2688.png`,
-  `${BASE}/assets/images/pwa/splash-1536x2048.png`,
-  `${BASE}/assets/images/pwa/splash-1668x2224.png`,
-  `${BASE}/assets/images/pwa/splash-1668x2388.png`,
-  `${BASE}/assets/images/pwa/splash-2048x2732.png`,
-
-  `https://fonts.sandbox.google.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0`,
+  <?php foreach ($cached_files as $file) : ?>
+  '<?= $file ?>',
+  <?php endforeach; ?>
 
   OFFLINE_URL,
 ];
 
 // For dynamic content
 const LAZY_CACHE = [
-//  `${BASE}/posts.json`,
-  `${BASE}/`,
+  <?php foreach ($lazy_cache as $file) : ?>
+  '<?= $file ?>',
+  <?php endforeach; ?>
 ];
 
 self.addEventListener("install", (event) => {

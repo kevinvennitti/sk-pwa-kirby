@@ -2,8 +2,8 @@
 
 <h1><?= $page->title() ?></h1>
 
-<a href="javascript:window.location.reload()">Recharger la page</a>
-<hr>
-<?php echo time(); ?>
+<a href="javascript:window.location.reload()">Reload page</a>
+
+<div A2HS>Add to home screen</div>
 
 <?php snippet('footer') ?>

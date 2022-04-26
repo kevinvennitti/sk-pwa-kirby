@@ -110,8 +110,8 @@ function optionsKirbyPwa(): array
             $shortcutIcons = [
                 'src' => url($shortcut['icons']['src']),
                 'sizes' => $shortcut['icons']['sizes'] ?? '',
-            //    'type' => 'image/' . $fileInfo['extension'],
-            //    'purpose' => $shortcut['icons']['purpose']
+                'type' => 'image/' . $fileInfo['extension'],
+                'purpose' => $shortcut['icons']['purpose'] ?? 'any',
             ];
         } else {
             $shortcutIcons = [];

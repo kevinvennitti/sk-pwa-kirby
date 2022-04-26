@@ -23,7 +23,7 @@ a {
 }
 
 :root {
-  --app-nav-height: calc(100px + env(safe-area-inset-bottom, 0px));
+  --app-nav-height: calc(80px + env(safe-area-inset-bottom, 0px));
 }
 
 #app {
@@ -41,6 +41,11 @@ a {
 
 #app-main {
   padding:12px;
+}
+
+#app-main,
+#app-main a {
+  color:#312E81;
 }
 
 #app-nav {

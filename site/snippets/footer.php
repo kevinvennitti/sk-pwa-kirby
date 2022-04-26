@@ -1,13 +1,9 @@
 
-    <div A2HS>Add to home screen</div>
-    <div A2HS>Add to home screen</div>
-    <div A2HS>Add to home screen</div>
-
   </div>
   <nav id="app-nav">
     <ul>
       <li>
-        <a href="#">
+        <a href="<?= $site->url() ?>/">
           <span class="app-nav-tab-icon material-symbols-rounded">
             &#xE88a;
           </span>
@@ -17,7 +13,7 @@
         </a>
       </li>
       <li>
-        <a href="#">
+        <a href="<?= $site->url() ?>/favs">
           <span class="app-nav-tab-icon material-symbols-rounded">
             &#xE87d;
           </span>
@@ -27,7 +23,7 @@
         </a>
       </li>
       <li>
-        <a href="#">
+        <a href="<?= $site->url() ?>/about">
           <span class="app-nav-tab-icon material-symbols-rounded">
             &#xE853;
           </span>
@@ -41,7 +37,6 @@
 </div>
 
 <script type="text/javascript" src="./assets/js/jquery.js"></script>
-<script type="text/javascript" src="./assets/js/jquery-ui.js"></script>
 <script type="text/javascript" src="./assets/js/main.js"></script>
 </body>
 </html>

@@ -16,7 +16,7 @@ Kirby::plugin('kevinvennitti/pwa', [
             'start_url' => '.',
             'description' => null,
             'background_color' => '#ffffff',
-            'theme_color' => '#000000',
+            'theme_color' => '#ffffff',
             'display' => 'standalone',
             'orientation' => 'any',
             'status_bar' => 'black',
@@ -59,10 +59,16 @@ Kirby::plugin('kevinvennitti/pwa', [
                 }
             }
         ],
-        /*
+
         [
-            'pattern' => 'serviceworker.js',
+            'pattern' => 'sw.js',
             'action' => function () {
+                //$localServiceWorker = __DIR__ . '/dist/sw.php';
+                $localServiceWorker = include(__DIR__ . '/dist/sw.php');
+
+                return Response::file($localServiceWorker);
+
+                /*
                 $localServiceWorker = kirby()->root('index') . '/serviceworker.js';
 
                 if (option('kevinvennitti.pwa.enable', false) === true) {
@@ -84,8 +90,8 @@ Kirby::plugin('kevinvennitti/pwa', [
                         return Response::file($localServiceWorker);
                     }
                 }
+                */
             }
         ]
-        */
     ]
 ]);
