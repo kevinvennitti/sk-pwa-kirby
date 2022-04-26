@@ -3,7 +3,7 @@ const DIR = ''; // If dir, starts with "/"
 const BASE = location.protocol + "//" + location.host + DIR;
 const PREFIX = "V1";
 
-const OFFLINE_URL = `${BASE}/offline.html`;
+const OFFLINE_URL = `${BASE}/offline`;
 
 // For static files
 const CACHED_FILES = [

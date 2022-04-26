@@ -2,26 +2,31 @@
 
 return [
   'debug' => true,
+  
   'kevinvennitti.pwa' => [
     'enable' => true,
 
     'manifest' => [
-        'name' => 'Kirby PWA',
+        'name' => 'PWA for Kirby',
         'short_name' => 'PWA',
         'description' => 'Progressive web app starterkit',
-        'background_color' => '#1649CC',
+
+        // Same color recommended for both background_color and theme_color
+        'background_color' => '#E0E7FF',
         'theme_color' => '#E0E7FF',
+
         'start_url' => './',
         'scope' => '/',
         'display' => 'standalone', // fullscreen, standalone (with status bar)
         'orientation' => 'any',
+
         // iOS only
         'status_bar' => 'black-translucent', // black, white, black-translucent
     ],
 
     'icons' => [
         '192x192' => 'assets/images/pwa/icon-192x192.png',
-        '256x256' => 'assets/images/pwa/icon-384x384.png',
+        '256x256' => 'assets/images/pwa/icon-256x256.png',
         '384x384' => 'assets/images/pwa/icon-384x384.png',
         '512x512' => 'assets/images/pwa/icon-512x512.png',
     ],
@@ -81,6 +86,5 @@ return [
         ],
       ]
     ],
-
   ]
 ];
