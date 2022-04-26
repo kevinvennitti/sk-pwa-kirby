@@ -52,19 +52,19 @@ function optionsKirbyPwa(): array
 
     // prepare icons
     $data['icons'] = [];
-    foreach ($icons as $size => $file) {
+    foreach ($icons as $file) {
         if (is_string($file) === true) {
             $path = $file;
             $fileInfo = pathinfo($path);
         } else {
-            $path = $file['path'];
+            $path = $file['src'];
             $fileInfo = pathinfo($path);
         }
 
         $data['icons'][] = [
             'src' => url($path),
             'type' => 'image/' . $fileInfo['extension'],
-            'sizes' => $size,
+            'sizes' => $file['sizes'],
             'purpose' => $file['purpose'] ?? 'any'
         ];
     }

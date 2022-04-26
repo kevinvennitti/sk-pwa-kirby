@@ -1,19 +1,20 @@
 <?php
 // Files to cache
-$cached_files = option('kevinvennitti.pwa.cached_files') ?? [];
+$cached_files = option('kevinvennitti.pwa.serviceworker.cached_files') ?? [];
 
 // Lazy-cache
-$lazy_cache = option('kevinvennitti.pwa.lazy_cache') ?? [];
+$lazy_cache = option('kevinvennitti.pwa.serviceworker.lazy_cache') ?? [];
 
-$offline_url = option('kevinvennitti.pwa.offline_url') ?? '/';
-$dir = option('kevinvennitti.pwa.dir') ?? '';
+$offline_url = option('kevinvennitti.pwa.serviceworker.offline_url') ?? '/';
+$dir = option('kevinvennitti.pwa.serviceworker.dir') ?? '';
+
+$cache_google_fonts = option('kevinvennitti.pwa.serviceworker.cache_google_fonts') ?? false;
 
 header('Content-Type: application/javascript');
 ?>
 const DIR = '<?= $dir; ?>'; // If dir, starts with "/"
-
 const BASE = location.protocol + "//" + location.host + DIR;
-const PREFIX = "V2";
+const PREFIX = "V3";
 
 const OFFLINE_URL = '<?= $offline_url; ?>';
 
@@ -124,7 +125,6 @@ self.addEventListener('fetch', (event) => {
   }
 
   // For files we want online first and saving cache version for offline
-  // and font files from Google Fonts
   else if (
     LAZY_CACHE.includes(event.request.url)
   ) {
@@ -163,6 +163,7 @@ self.addEventListener('fetch', (event) => {
     );
   }
 
+  <?php if ($cache_google_fonts === true) : ?>
   // For font files from Google Fonts
   else if (
     /fonts.(sandbox.google|googleapis|gstatic).com/.test(event.request.url)
@@ -200,4 +201,5 @@ self.addEventListener('fetch', (event) => {
       })()
     );
   }
+  <?php endif; ?>
 });
