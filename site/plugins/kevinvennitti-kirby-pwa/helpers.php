@@ -31,11 +31,11 @@ function optionsKirbyPwa(): array
 {
     // get options
     $manifest = option('kevinvennitti.pwa.manifest');
-    $icons = option('kevinvennitti.pwa.icons', []);
-    $splash = option('kevinvennitti.pwa.splash', []);
-    $shortcuts = option('kevinvennitti.pwa.shortcuts', []);
-    $screenshots = option('kevinvennitti.pwa.screenshots', []);
-    $custom = option('kevinvennitti.pwa.custom', []);
+    $icons = option('kevinvennitti.pwa.manifest.icons', []);
+    $splash = option('kevinvennitti.pwa.manifest.splash', []);
+    $shortcuts = option('kevinvennitti.pwa.manifest.shortcuts', []);
+    $screenshots = option('kevinvennitti.pwa.manifest.screenshots', []);
+    $custom = option('kevinvennitti.pwa.manifest.custom', []);
 
     $data = [
         'name' => $manifest['name'],
