@@ -12,16 +12,14 @@
 
 -----
 
-# Get started
 - [Configure your web app manifest](#configure-your-web-app-manifest)
 - [Configure your service worker](#configure-your-service-worker)
 - [Generate icons and splash screens](#generate-icons-and-splash-screens)
 - [Use Google Fonts symbols](#use-google-fonts-symbols)
 
-
 -----
 
-## Configure your web app manifest
+# Configure your web app manifest
 
 > The web app manifest provides information about a web application in a JSON text file, necessary for the web app to be downloaded and be presented to the user similarly to a native app (e.g., be installed on the homescreen of a device, providing users with quicker access and a richer experience).<br>
 — [Web app manifests on MDN web docs](https://developer.mozilla.org/en-US/docs/Web/Manifest)
@@ -43,38 +41,38 @@ The `manifest.json` file is rendered by the server (with a Kirby route) and uses
 | [`orientation`](https://developer.mozilla.org/en-US/docs/Web/Manifest/orientation) | Default orientation: `any`, `natural`, `landscape`, `landscape-primary`, `landscape-secondary`, `portrait`, `portrait-primary`, `portrait-secondary` | *any* |
 | `status_bar` | *(iOS only)* Style of the status bar:<br>`default`: normal appearance<br>`black`: the status bar has a black background<br>`black-translucent`: the web content is displayed under the status bar | *black* |
 
+<br>
 
+# Configure your service worker
 
-## Configure your service worker
-- Lists of cached files and lazy-cache files are stored in `sw.js`
-- Google Fonts files are automatically detected and cached for offline use (online version + offline cache)
-- If your project is not at your server's root, specify the appropriate base URL (aka `DIR`) in `sw.js` *(and don't forget to add `RewriteBase` to `.htaccess` for Kirby!)* ; otherwise caching won't work.
+> Using a Service worker you can easily set an app up to use cached assets first, thus providing a default experience even when offline, before then getting more data from the network. This is already available with native apps, which is one of the main reasons native apps are often chosen over web apps.<br>
+— [Service Workers on MDN web docs](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers)
 
 ### Service Worker (SW) parameters
 
 | Parameter | Values | Default |
 | --- | --- | --- |
-| `cached_files` | List of cached files, added and updated each time SW is installed. The cache version (if exists) is prefered. | [] |
-| `lazy_cache` | List of lazy-cached files. The cache version (if exists) is prefered, and the live version is systematically cached in background. | [] |
+| `cached_files` | List of cached files, added and updated each time SW is installed. The cache version (if exists) is prefered.<br>*For assets, CSS/JS/images files* | [] |
+| `lazy_cache` | List of lazy-cached files. The cache version (if exists) is prefered, and the live version is systematically cached in background<br>*For data caching and web pages* | [] |
 | `offline_url` | URL to redirect when the app is offline and the current screen has no cache version | / |
-| `dir` | Path on the server, same as RewriteBase value if exists | |
-| `cache_google_fonts` | Automatically cache Google Fonts resources | *false* |
+| `dir` | Path on the server, same as RewriteBase value if exists *(don't forget to specify `RewriteBase` into `.htaccess` for Kirby!)* | |
+| `cache_google_fonts` | Automatically cache Google Fonts resources for offline use | *false* |
 
+<br>
 
+# Generate icons and splash screens
 
-## Generate icons and splash screens
-
-You have to generate 4 icons and 10 splash screens:
+You have to generate icons, and you can generate splash screens, shortcuts icons and app screenshots:
 
 1. [Use this read-to-export Figma template](https://www.figma.com/file/HlusyUZh1con2oBd0fSvnN/sk-pwa-kirby?node-id=0%3A1)
 2. Export and compress all these assets with your favorite compression tool (like [Compress PNG](https://compresspng.com/fr/))
 3. Export all optimized assets in `assets/images/pwa/`
 
-*Note: only iOS uses these images for splash screens. Android uses the 512x512 icon + name + background_color (stored in `config.js`). You may want to add a border around all icons to avoid a poor icon integration on the background color for Android splash screens.*
+*Note: only iOS uses splash screens. Android uses the 512x512 icon + name + background_color (stored in `config.js`). You may want to add a border around all icons to avoid a poor icon integration on the background color for Android splash screens.*
 
+<br>
 
-
-## Use Google Fonts symbols
+# Use Google Fonts symbols
 This starterkit is ready to use Material Symbols as font variants:
 
 1. [Go to Material Symbols library](https://fonts.google.com/icons?icon.style=Rounded&icon.set=Material+Symbols)
