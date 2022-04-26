@@ -1,3 +1,8 @@
+
+    <div A2HS>Add to home screen</div>
+    <div A2HS>Add to home screen</div>
+    <div A2HS>Add to home screen</div>
+
   </div>
   <nav id="app-nav">
     <ul>

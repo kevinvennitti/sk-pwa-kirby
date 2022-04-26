@@ -6,7 +6,7 @@ use Kirby\Http\Response;
 
 @include_once __DIR__ . '/helpers.php';
 
-Kirby::plugin('clicktonext/pwa', [
+Kirby::plugin('kevinvennitti/pwa', [
     'options' => [
         'enable' => false,
         'manifest' => [
@@ -24,6 +24,7 @@ Kirby::plugin('clicktonext/pwa', [
         'icons' => [],
         'splash' => [],
         'shortcuts' => [],
+        'screenshots' => [],
         'custom' => [],
         'manifest.json' => null,
         'serviceworker.js' => null
@@ -37,8 +38,8 @@ Kirby::plugin('clicktonext/pwa', [
             'action' => function () {
                 $localManifestJson = kirby()->root('index') . '/manifest.json';
 
-                if (option('clicktonext.pwa.enable', false) === true) {
-                    $manifestJson = option('clicktonext.pwa.manifest.json');
+                if (option('kevinvennitti.pwa.enable', false) === true) {
+                    $manifestJson = option('kevinvennitti.pwa.manifest.json');
 
                     if ($manifestJson === null) {
                         if (F::exists($localManifestJson) === true) {
@@ -58,13 +59,14 @@ Kirby::plugin('clicktonext/pwa', [
                 }
             }
         ],
+        /*
         [
             'pattern' => 'serviceworker.js',
             'action' => function () {
                 $localServiceWorker = kirby()->root('index') . '/serviceworker.js';
 
-                if (option('clicktonext.pwa.enable', false) === true) {
-                    $serviceworkerJs = option('clicktonext.pwa.serviceworker.js');
+                if (option('kevinvennitti.pwa.enable', false) === true) {
+                    $serviceworkerJs = option('kevinvennitti.pwa.serviceworker.js');
 
                     if ($serviceworkerJs === null) {
                         if (F::exists($localServiceWorker) === true) {
@@ -84,5 +86,6 @@ Kirby::plugin('clicktonext/pwa', [
                 }
             }
         ]
+        */
     ]
 ]);

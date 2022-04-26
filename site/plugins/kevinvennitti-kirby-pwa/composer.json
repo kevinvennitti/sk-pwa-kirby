@@ -1,0 +1,23 @@
+{
+  "name": "kevinvennitti/kirby-pwa",
+  "description": "PWA (progressive web app) for Kirby 3.",
+  "type": "kirby-plugin",
+  "version": "1.0.0",
+  "license": "MIT",
+  "keywords": [
+    "kirby-pwa",
+    "pwa",
+    "progressive-web-app"
+  ],
+  "homepage": "https://kevinvennitti.com",
+  "support": {
+    "email": "hello@kevinvennitti.com"
+  },
+  "authors": [
+    {
+      "name": "Kevin Vennitti",
+      "email": "hello@kevinvennitti.com",
+      "homepage": "https://kevinvennitti.com"
+    }
+  ],
+}

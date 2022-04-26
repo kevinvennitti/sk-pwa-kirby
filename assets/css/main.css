@@ -50,8 +50,6 @@ a {
   right:0;
   height:var(--app-nav-height);
   padding-bottom:env(safe-area-inset-bottom, 0px);
-  padding-left:6px;
-  padding-right:6px;
 
   background:rgba(238,242,255,.95);
   backdrop-filter:blur(10px);

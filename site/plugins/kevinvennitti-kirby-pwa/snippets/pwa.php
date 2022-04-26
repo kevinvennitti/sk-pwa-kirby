@@ -1,4 +1,4 @@
-<?php if (option('clicktonext.pwa.enable', false) === true): ?>
+<?php if (option('kevinvennitti.pwa.enable', false) === true): ?>
     <?php $manifestOptions = $manifestOptions ?? optionsKirbyPwa(); ?>
     <!-- Start PWA Settings -->
 
@@ -37,20 +37,53 @@
     <script type="text/javascript">
       // Initialize the service worker
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('<?= url('serviceworker.js') ?>', {
+        navigator.serviceWorker.register('<?= url('sw.js') ?>', {
           scope: '<?= $manifestOptions['scope'] ?>'
         }).then(function (registration) {
             <?php if(option('debug') === true): ?>
           // Registration was successful
-          console.log('Kirby PWA: ServiceWorker registration successful with scope: ', registration.scope);
+          console.log('PWA: ServiceWorker registration successful with scope: ', registration.scope);
             <?php endif; ?>
         }, function (err) {
             <?php if(option('debug') === true): ?>
           // registration failed :(
-          console.log('Kirby PWA: ServiceWorker registration failed: ', err);
+          console.log('PWA: ServiceWorker registration failed: ', err);
             <?php endif; ?>
         });
       }
+
+      window.addEventListener('load', function(event) {
+        const callToA2HS = document.querySelectorAll('[A2HS]');
+
+        if (callToA2HS !== null) {
+          let deferredPrompt;
+
+          window.addEventListener('beforeinstallprompt', function(e) {
+            // Prevent Chrome 67 and earlier from automatically showing the prompt
+            e.preventDefault();
+            // Stash the event so it can be triggered later.
+            deferredPrompt = e;
+          });
+
+          for (let i = 0; i < callToA2HS.length; i++) {
+            callToA2HS[i].addEventListener('click', (e) => {
+              // Show the prompt
+              deferredPrompt.prompt();
+              // Wait for the user to respond to the prompt
+              deferredPrompt.userChoice
+                .then((choiceResult) => {
+                  if (choiceResult.outcome === 'accepted') {
+                    console.log('User accepted the A2HS prompt');
+                  } else {
+                    console.log('User dismissed the A2HS prompt');
+                  }
+                  deferredPrompt = null;
+                });
+            });
+          }
+        }
+      });
+
     </script>
     <!-- End PWA Settings -->
 <?php endif; ?>

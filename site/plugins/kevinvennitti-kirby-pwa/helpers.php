@@ -30,11 +30,12 @@ function snippetKirbyPwa(array $data = [], bool $return = false): string
 function optionsKirbyPwa(): array
 {
     // get options
-    $manifest = option('clicktonext.pwa.manifest');
-    $icons = option('clicktonext.pwa.icons', []);
-    $splash = option('clicktonext.pwa.splash', []);
-    $shortcuts = option('clicktonext.pwa.shortcuts', []);
-    $custom = option('clicktonext.pwa.custom', []);
+    $manifest = option('kevinvennitti.pwa.manifest');
+    $icons = option('kevinvennitti.pwa.icons', []);
+    $splash = option('kevinvennitti.pwa.splash', []);
+    $shortcuts = option('kevinvennitti.pwa.shortcuts', []);
+    $screenshots = option('kevinvennitti.pwa.screenshots', []);
+    $custom = option('kevinvennitti.pwa.custom', []);
 
     $data = [
         'name' => $manifest['name'],
@@ -80,6 +81,26 @@ function optionsKirbyPwa(): array
         ];
     }
 
+    // prepare screenshots
+    $data['screenshots'] = [];
+    foreach ($screenshots as $file) {
+        if (is_string($file) === true) {
+            $path = $file;
+            $fileInfo = pathinfo($path);
+        } else {
+            $path = $file['src'];
+            $fileInfo = pathinfo($path);
+        }
+
+        $data['screenshots'][] = [
+            'src' => url($path),
+            'type' => 'image/' . $fileInfo['extension'],
+            'sizes' => $file['sizes'] ?? '',
+            'label' => $file['label'] ?? '',
+            'platform' => $file['platform'] ?? 'narrow',
+        ];
+    }
+
     // prepare shortcuts
     $data['shortcuts'] = [];
     foreach ($shortcuts as $shortcut) {
@@ -88,8 +109,9 @@ function optionsKirbyPwa(): array
 
             $shortcutIcons = [
                 'src' => url($shortcut['icons']['src']),
-                'type' => 'image/' . $fileInfo['extension'],
-                'purpose' => $shortcut['icons']['purpose']
+                'sizes' => $shortcut['icons']['sizes'] ?? '',
+            //    'type' => 'image/' . $fileInfo['extension'],
+            //    'purpose' => $shortcut['icons']['purpose']
             ];
         } else {
             $shortcutIcons = [];
@@ -97,6 +119,7 @@ function optionsKirbyPwa(): array
 
         $data['shortcuts'][] = [
             'name' => I18n::translate($shortcut['name'], $shortcut['name']),
+            'short_name' => I18n::translate($shortcut['short_name'], $shortcut['short_name']),
             'description' => I18n::translate($shortcut['description'], $shortcut['description']),
             'url' => url($shortcut['url']),
             'icons' => [

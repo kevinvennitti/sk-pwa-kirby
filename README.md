@@ -24,9 +24,9 @@
 ## Set your manifest.json
 *Note: The file `manifest.json` does not exist in the root folder because it is automatically rendered on the server: `/manifest.json` is routing to a virtual JSON page using `config.js` data (routing is done by PWA Kirby's plugin)*
 - You can set `display` mode with `standalone` (with mobile UI) or `fullscreen` (without any mobile UI)
-- If your project is not at your server's root, specify the appropriate base URL (aka `DIR`) in `sw.js` ; otherwise caching won't work.
+- If your project is not at your server's root, specify the appropriate base URL (aka `DIR`) in `sw.js` *(and don't forget to add `RewriteBase` to `.htaccess` for Kirby!)* ; otherwise caching won't work.
 
- 
+
 
 ## Generate icons and splash screens
 
@@ -38,13 +38,13 @@ You have to generate 4 icons and 10 splash screens:
 
 *Note: only iOS uses these images for splash screens. Android uses the 512x512 icon + name + background_color (stored in `config.js`). You may want to add a border around all icons to avoid a poor icon integration on the background color for Android splash screens.*
 
- 
+
 
 ## Customize files caching
 - Lists of cached files and lazy-cache files are stored in `sw.js`
 - Google Fonts files are automatically detected and cached for offline use (online version + offline cache)
 
- 
+
 
 ## Use Google Fonts symbols
 This starterkit is ready to use Material Symbols as font variants:
